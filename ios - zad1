@@ -1,0 +1,36 @@
+class fiszki : CustomStringConvertible {
+    var leftSideText: String
+    var rightSideText: String
+    var learned: Bool
+    var prompts = [String]()
+    
+        init(){
+        self.leftSideText = ""
+        self.rightSideText = ""
+        self.learned = false
+    }
+        init(leftText: String , rightText: String, learned: Bool ,prompt: [String]){
+            self.leftSideText = leftText
+            self.rightSideText = rightText
+            self.learned = learned
+            self.prompts = prompt
+        }
+    
+    var description: String{
+       var tmp = "["
+       for item in self.prompts{
+       tmp = tmp + " " + item + "," 
+       }
+       tmp.removeAtIndex(tmp.endIndex.predecessor())
+       tmp += "]"
+     return tmp
+           
+     }
+ 
+}
+
+
+var obiekt = fiszki(leftText:"pozdro",rightText:"elo",learned:true,prompt:["proszę","uwierz","we","mnie"] )
+print(obiekt)
+
+
