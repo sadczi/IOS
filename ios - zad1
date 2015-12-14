@@ -23,7 +23,7 @@ class fiszki : CustomStringConvertible {
        }
        tmp.removeAtIndex(tmp.endIndex.predecessor())
        tmp += "]"
-     return tmp
+     return self.leftSideText + " -> " + self.rightSideText + " " + tmp
            
      }
  
@@ -32,5 +32,3 @@ class fiszki : CustomStringConvertible {
 
 var obiekt = fiszki(leftText:"pozdro",rightText:"elo",learned:true,prompt:["proszę","uwierz","we","mnie"] )
 print(obiekt)
-
-
