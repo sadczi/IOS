@@ -30,5 +30,5 @@ class fiszki : CustomStringConvertible {
 }
 
 
-var obiekt = fiszki(leftText:"pozdro",rightText:"elo",learned:true,prompt:["proszę","uwierz","we","mnie"] )
+var obiekt = fiszki(leftText:"witam",rightText:"pozdrawiam",learned:true,prompt:["proszę","uwierz","we","mnie"] )
 print(obiekt)
