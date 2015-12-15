@@ -1,0 +1,64 @@
+class fiszki : CustomStringConvertible {
+    var leftSideText: String
+    var rightSideText: String
+    var learned: Bool
+    var prompts = [promtType]()
+    
+        init(){
+        self.leftSideText = ""
+        self.rightSideText = ""
+        self.learned = false
+    }
+        init(leftText: String , rightText: String, learned: Bool ,prompt:[promtType]){
+            self.leftSideText = leftText
+            self.rightSideText = rightText
+            self.learned = learned
+            self.prompts = prompt
+        }
+     
+     
+   var description: String{
+       var tmp = "["
+       for item in self.prompts{
+       switch item{
+       case .Text:
+           print(item)
+        
+       
+       case .Image:
+           print("Obraz")
+
+           
+       }     
+       }
+       tmp.removeAtIndex(tmp.endIndex.predecessor())
+       tmp += "]"
+     return self.leftSideText + " -> " + self.rightSideText + " " +  "  - podpowiedzi powyżej"
+   }       
+     
+ 
+}
+
+enum promtType{
+    case Text(String)
+    case Image(NSMutableData)
+    
+    init(){
+        self = .Text("Pusta podpowiedź")    
+    }
+    var description: String{
+        switch self{
+            case .Text(let val):
+                return val
+            default:
+                return ("")
+        }
+    }
+}
+
+var pr = promtType.Text("proszę")
+var pr1 = promtType.Text("uwierz")
+var pr2 = promtType.Text("we")
+var pr3 = promtType.Text("mnie")
+var obiekt = fiszki(leftText:"pozdro",rightText:"elo",learned:true,prompt:[pr , pr1 , pr2 , pr3] )
+print(obiekt)
