@@ -1,0 +1,95 @@
+class fiszki : CustomStringConvertible , teachableProtocol {
+    var leftSideText: String
+    var rightSideText: String
+    var learned: Bool
+    var prompts = [promtType]()
+    
+        init(){
+        self.leftSideText = ""
+        self.rightSideText = ""
+        self.learned = false
+    }
+        init(leftText: String , rightText: String, learned: Bool ,prompt:[promtType]){
+            self.leftSideText = leftText
+            self.rightSideText = rightText
+            self.learned = learned
+            self.prompts = prompt
+        }
+     
+     
+   var description: String{
+       var tmp = "["
+       for item in self.prompts{
+       switch item{
+       case .Text:
+           print(item)
+        
+       
+       case .Image:
+           print("Obraz")
+
+           
+       }     
+       }
+       tmp.removeAtIndex(tmp.endIndex.predecessor())
+       tmp += "]"
+     return self.leftSideText + " -> " + self.rightSideText + " " +  "  - podpowiedzi powyżej"
+   }       
+     
+ 
+}
+
+enum promtType{
+    case Text(String)
+    case Image(NSMutableData)
+    
+    init(){
+        self = .Text("Pusta podpowiedź")    
+    }
+    var description: String{
+        switch self{
+            case .Text(let val):
+                return val
+            default:
+                return ("")
+        }
+    }
+}
+
+protocol teachableProtocol{
+    var learned: Bool {set get}
+}
+
+func checkStatus(tab:[fiszki]) -> [fiszki]{
+    var tmp = [fiszki]()
+    var counter = 0
+    for object in tab{
+        counter++
+        if let objectTeachable = object as? teachableProtocol{
+            print("Obiekt nr. \(counter),spełnia warunki protokołu.")
+                if(objectTeachable.learned == false){
+                    tmp.append(object)
+                }
+        }
+    }
+    return tmp
+}
+
+var pr = promtType.Text("proszę")
+var pr1 = promtType.Text("uwierz")
+var pr2 = promtType.Text("we")
+var pr3 = promtType.Text("mnie")
+
+var obiekt = fiszki(leftText:"witam",rightText:"pozdrawiam",learned:true,prompt:[pr , pr1 , pr2 , pr3] )
+var obiekt1 = fiszki(leftText:"lewo",rightText:"prawo",learned:false,prompt:[pr , pr1 , pr2 , pr3] )
+var obiekt2 = fiszki(leftText:"left",rightText:"right",learned:false,prompt:[pr , pr1 , pr2 , pr3] )
+
+var tab = [fiszki]()
+tab.append(obiekt)
+tab.append(obiekt1)
+tab.append(obiekt2)
+tab.append(obiekt)
+
+var returns = checkStatus(tab)
+
+print("funkcja zwraca nam \(returns.count) obiektów")
