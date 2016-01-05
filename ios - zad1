@@ -1,4 +1,4 @@
-class fiszki : CustomStringConvertible {
+class fiszki : CustomStringConvertible{
     var leftSideText: String
     var rightSideText: String
     var learned: Bool
@@ -8,7 +8,8 @@ class fiszki : CustomStringConvertible {
         self.leftSideText = ""
         self.rightSideText = ""
         self.learned = false
-    }
+        }
+        
         init(leftText: String , rightText: String, learned: Bool ,prompt: [String]){
             self.leftSideText = leftText
             self.rightSideText = rightText
@@ -19,11 +20,11 @@ class fiszki : CustomStringConvertible {
     var description: String{
        var tmp = "["
        for item in self.prompts{
-       tmp = tmp + " " + item + "," 
+       tmp = tmp  + item + "," 
        }
        tmp.removeAtIndex(tmp.endIndex.predecessor())
        tmp += "]"
-     return self.leftSideText + " -> " + self.rightSideText + " " + tmp
+       return self.leftSideText + " -> " + self.rightSideText + " " + tmp
            
      }
  

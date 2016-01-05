@@ -1,4 +1,4 @@
-class fiszki : CustomStringConvertible {
+class fiszki : CustomStringConvertible{
     var leftSideText: String
     var rightSideText: String
     var learned: Bool
@@ -8,7 +8,8 @@ class fiszki : CustomStringConvertible {
         self.leftSideText = ""
         self.rightSideText = ""
         self.learned = false
-    }
+        }
+        
         init(leftText: String , rightText: String, learned: Bool ,prompt:[promtType]){
             self.leftSideText = leftText
             self.rightSideText = rightText
@@ -19,46 +20,49 @@ class fiszki : CustomStringConvertible {
      
    var description: String{
        var tmp = "["
+       
        for item in self.prompts{
        switch item{
        case .Text:
            print(item)
-        
+           tmp += item.description + " "
        
        case .Image:
            print("Obraz")
 
            
-       }     
+                  }     
        }
        tmp.removeAtIndex(tmp.endIndex.predecessor())
        tmp += "]"
-     return self.leftSideText + " -> " + self.rightSideText + " " +  "  - podpowiedzi powyżej"
+     return self.leftSideText + " -> " + self.rightSideText + " " +  tmp
    }       
      
  
 }
 
 enum promtType{
-    case Text(String)
+    case Text(text: String)
     case Image(NSMutableData)
     
     init(){
-        self = .Text("Pusta podpowiedź")    
+        self = .Text(text: "Pusta podpowiedź")    
     }
     var description: String{
+        var a:String
         switch self{
             case .Text(let val):
-                return val
+                a = val
+                return a
             default:
                 return ("")
         }
     }
 }
 
-var pr = promtType.Text("proszę")
-var pr1 = promtType.Text("uwierz")
-var pr2 = promtType.Text("we")
-var pr3 = promtType.Text("mnie")
+var pr = promtType.Text(text: "proszę")
+var pr1 = promtType.Text(text: "uwierz")
+var pr2 = promtType.Text(text: "we")
+var pr3 = promtType.Text(text: "mnie")
 var obiekt = fiszki(leftText:"Witam",rightText:"Pozdrawiam",learned:true,prompt:[pr , pr1 , pr2 , pr3] )
 print(obiekt)

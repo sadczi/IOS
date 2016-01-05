@@ -1,4 +1,4 @@
-class fiszki : CustomStringConvertible , teachableProtocol {
+class fiszki : CustomStringConvertible , teachableProtocol{
     var leftSideText: String
     var rightSideText: String
     var learned: Bool
@@ -23,7 +23,7 @@ class fiszki : CustomStringConvertible , teachableProtocol {
        switch item{
        case .Text:
            print(item)
-        
+           tmp += item.description + " "
        
        case .Image:
            print("Obraz")
@@ -33,7 +33,7 @@ class fiszki : CustomStringConvertible , teachableProtocol {
        }
        tmp.removeAtIndex(tmp.endIndex.predecessor())
        tmp += "]"
-     return self.leftSideText + " -> " + self.rightSideText + " " +  "  - podpowiedzi powyżej"
+     return self.leftSideText + " -> " + self.rightSideText + " " +  tmp
    }       
      
  
